@@ -22,7 +22,3 @@ Kloonaa arkisto:
    cd database
    ```
 
-## Käynnistä tietokanta
-   ```
-   npx run dev
-   ```
