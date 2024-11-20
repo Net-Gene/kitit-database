@@ -16,7 +16,14 @@ Tämä arkisto sisältää Kit-IT-projektin tietokannan asetukset ja skeeman. Se
 - Tietokannan siirtotyökalut (esim. Knex.js, TypeORM-siirrot)
 
 ## Tietokannan asetukset
-1. Kloonaa arkisto:
-   ```bash
+
+Kloonaa arkisto:
+   ```
    git clone <repository-url>
    cd database
+   ```
+
+## Käynnistä tietokanta
+   ```
+   npx run dev
+   ```
