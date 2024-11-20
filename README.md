@@ -5,8 +5,7 @@ Tämä arkisto sisältää Kit-IT-projektin tietokannan asetukset ja skeeman. Se
 ## Sisällysluettelo
 - [Käytetyt tekniikat](#teknologiat-käytetty)
 - [Tietokannan asetukset](#database-setup)
--
-[Schema Structure](#schema-structure)
+- [Schema Structure](#schema-structure)
 - [Running the Migrations](#running-the-migrations)
 - [Osallistuminen](#contributing)
 
