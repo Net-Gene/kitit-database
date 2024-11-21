@@ -20,7 +20,7 @@ jobs:
 
       - name: Lint SQL files
         run: |
-          sqlfluff lint sql/*.sql
+          sqlfluff lint sql/*.sql --dialect postgres
         # Uncomment the following line to enforce linting
         # continue-on-error: false
 
