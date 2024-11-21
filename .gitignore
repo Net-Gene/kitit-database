@@ -1,0 +1,31 @@
+# Python-specific
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+
+# Virtual environment directories
+venv/
+env/
+*.egg-info/
+
+# Database files
+*.db
+*.sqlite3
+
+# PostgreSQL data (if using local databases, not recommended to commit these)
+*.pgsql
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.bak
+*.swp
