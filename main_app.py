@@ -12,7 +12,7 @@ def execute_sql_file(connection, file_path):
 
 
 def main():
-    # Database connection details
+    # Tietokantayhteyden tiedot
     db_config = {
         "dbname": "kit_it_db",
         "user": "postgres",
@@ -21,16 +21,16 @@ def main():
         "port": 5432
     }
 
-    # Connect to the PostgreSQL database
+    # Yhdistä PostgreSQL-tietokantaan
     try:
         conn = psycopg2.connect(**db_config)
         print("Tietokanta yhdistetty onnistuneesti.")
 
-        # # Execute SQL files
-        # execute_sql_file(conn, 'sql/create_tables.sql')
-        # execute_sql_file(conn, 'sql/insert_data.sql')
+        # Suorita SQL-tiedostoja
+        execute_sql_file(conn, 'sql/create_tables.sql')
+        execute_sql_file(conn, 'sql/insert_data.sql')
 
-        # print("SQL-skriptit suoritettu onnistuneesti.")
+        print("SQL-skriptit suoritettu onnistuneesti.")
     except Exception as e:
         print(f"An error occurred: {e}")
     finally:
