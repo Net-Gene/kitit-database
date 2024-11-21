@@ -10,9 +10,9 @@ Tämä arkisto sisältää Kit-IT-projektin tietokannan asetukset ja skeeman. Se
 - [Osallistuminen](#contributing)
 
 ## Käytetyt tekniikat
-- **PostgreSQL** / MySQL / SQLite (Valitse käyttämäsi tietokanta)
+- **PostgreSQL**
 - **psycopg2** (PostgreSQL yhteys kirjasto)
-- **SQLAlchemy** / **Drizzle ORM** (valitsemasi ORM)
+- **Drizzle ORM** 
 - Tietokannan siirtotyökalut, kuten `psycopg2` tai ORM:ien omat siirtotyökalut
 
 ## Tietokannan asetukset
