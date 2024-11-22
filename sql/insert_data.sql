@@ -16,5 +16,3 @@ VALUES (1, 999.99, 'Pending'), (2, 699.99, 'Completed');
 -- Lisää esimerkkitiedot tilauksen tuotteet -taulukkoon
 INSERT INTO order_items (order_id, product_id, quantity, price)
 VALUES (1, 1, 1, 999.99), (2, 2, 1, 699.99);
-
-
