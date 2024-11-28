@@ -26,7 +26,9 @@ def main():
         conn = psycopg2.connect(**db_config)
         print("Tietokanta yhdistetty onnistuneesti.")
 
-        # Suorita SQL-tiedostoja
+        # Tyhejennä SQL-tiedostot
+        execute_sql_file(conn, 'sql/clear_tables.sql')
+        # Tutoa SQL-tiedostot
         execute_sql_file(conn, 'sql/create_tables.sql')
         execute_sql_file(conn, 'sql/insert_data.sql')
 
