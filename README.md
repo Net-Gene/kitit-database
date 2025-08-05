@@ -109,5 +109,9 @@ which loads and executes SQL commands from `sql/create_tables.sql` and `sql/inse
 
 This ensures the database schema and initial data are always up to date.
 
+---
+
+## Contributor  
+[jhalmekosk](https://github.com/jhalmeko)
 
 > ⚠️ This project is part of a **school assignment** intended for learning and educational purposes only. It is **not intended for real-world business use** and is not in active production.
