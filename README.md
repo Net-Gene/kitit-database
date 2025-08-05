@@ -1,91 +1,113 @@
-# Tietokantavarasto Kit-IT:lle
+# Database Repository for Kit-IT 🏛️
 
-Tämä arkisto sisältää Kit-IT-projektin tietokannan asetukset ja skeeman. Se sisältää rakenteen, kokoonpanon ja siirtokomentosarjat taustajärjestelmässä käytettävän tietokannan hallintaan.
+This repository contains the Database code for **Kit-IT**, a school project focused on building a web service platform for IT service management.
 
-## Sisällysluettelo
-- [Käytetyt tekniikat](#teknologiat-käytetty)
-- [Tietokannan asetukset](#database-setup)
-- [Tietokannan skeema](#schema-structure)
-- [Siirrot ja tietokannan luonti](#running-the-migrations)
-- [Osallistuminen](#contributing)
+---
 
-## Käytetyt tekniikat
+## Project Summary (School Context)
+
+Kit-IT is a fictional IT service company. The project includes:
+
+- Account registration and login (JWT-based auth)
+- Appointment booking and service browsing
+- Real-time customer support via chat
+- User data and order management
+
+---
+
+## Tech Stack Used 🛠️
+
 - **PostgreSQL**
-- **psycopg2** (PostgreSQL yhteys kirjasto)
-- **Drizzle ORM** 
-- Tietokannan siirtotyökalut, kuten `psycopg2` tai ORM:ien omat siirtotyökalut
+- **psycopg2** – PostgreSQL database adapter for Python
+- **Drizzle ORM**
+- Database migration tools such as `psycopg2` scripts or ORM-specific migration utilities
 
-## Tietokannan asetukset
+---
 
-### Vaihe 1: Kloonaa arkisto
+## Getting Started
 
-Kloonaa tämä arkisto koneellesi ja siirry `database`-hakemistoon:
+### Step 1: Clone the Repository
 
+Clone this repository and navigate to the `database` directory:
+
+````bash
+git clone <repository-url>
+cd database
 ````
-git clone <repository-url> cd database
-````
+### Step 2: Install Dependencies
+
+Install required Python dependencies:
 
 
-### Vaihe 2: Asenna riippuvuudet
-
-Asenna tarvittavat riippuvuudet Pythonin avulla:
 ````
 pip install -r requirements.txt
 ````
-### Vaihe 3: Konfiguroi tietokanta
 
-Avaa ja muokkaa `main_app.py` tiedostoa, ja aseta oikeat tietokannan yhteystiedot:
+### Step 3: Configure the Database
+
+Open the `main_app.py` file and configure your database connection:
+
 ````
-db_config = { "dbname": "your_database", "user": "your_user", "password": "your_password", "host": "localhost", "port": 5432 }
+db_config = {
+  "dbname": "your_database",
+  "user": "your_user",
+  "password": "your_password",
+  "host": "localhost",
+  "port": 5432 }
 ````
 
 
-### Vaihe 4: Suorita taulut ja siirrot
+### Step 4: Run Migrations and Seed Data
 
-Suorita `main_app.py` tiedosto luodaksesi taulut ja lisätäksesi esimerkkidata:
-````
+Execute the following to create tables and insert sample data:
+
+````bash
 python main_app.py
 ````
 
-Tämä suorittaa SQL-koodit `sql/create_tables.sql` ja `sql/insert_data.sql`, luoden tarvittavat taulut ja lisäämällä esimerkkidataa.
 
-## Tietokannan skeema
+This runs the SQL scripts `sql/create_tables.sql` and `sql/insert_data.sql`, which create the necessary tables and insert example records.
 
-Tietokannan skeema sisältää seuraavat taulut:
+---
 
-- **users**: Sisältää käyttäjien tunnistautumistiedot (käyttäjätunnus, sähköposti, salasana).
-- **products**: Sisältää tuotteet, joissa on linkki käyttäjään, joka omistaa tuotteen.
+## Database Schema
 
-### users-taulu:
+### `users` table:
+> Stores user credentials (username, email, password)
 ````
-CREATE TABLE IF NOT EXISTS users ( 
-                            id SERIAL PRIMARY KEY, 
-                            username VARCHAR(50) NOT NULL UNIQUE, 
-                            email VARCHAR(100) NOT NULL UNIQUE, 
-                            password_hash VARCHAR(255) NOT NULL, 
-                            created_at TIMESTAMP DEFAULT NOW(), 
-                            updated_at TIMESTAMP DEFAULT NOW() 
-                            );
-````
-
-### products-taulu:
-````
-CREATE TABLE IF NOT EXISTS products ( 
-                            id SERIAL PRIMARY KEY, user_id INT NOT NULL, 
-                            name VARCHAR(100) NOT NULL, 
-                            description TEXT, 
-                            price DECIMAL(10, 2) NOT NULL, 
-                            created_at TIMESTAMP DEFAULT NOW(), 
-                            updated_at TIMESTAMP DEFAULT NOW(), 
-                            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE );
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
 ````
 
-## Siirrot ja tietokannan luonti
+### `products` table:
+> Stores products with a reference to the owning user
+````
+CREATE TABLE IF NOT EXISTS products (     
+  id SERIAL PRIMARY KEY,     
+  user_id INT NOT NULL,     
+  name VARCHAR(100) NOT NULL,     
+  description TEXT,     
+  price DECIMAL(10, 2) NOT NULL,     
+  created_at TIMESTAMP DEFAULT NOW(),     
+  updated_at TIMESTAMP DEFAULT NOW(),     
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE 
+);
+````
 
-Siirtokomentosarjat (migrations) suoritetaan `main_app.py` -tiedostossa, joka käynnistää taulujen luontikomentosarjat ja lisää esimerkkidataa `sql/create_tables.sql` ja `sql/insert_data.sql` tiedostoista. Tämä varmistaa, että tietokanta on ajan tasalla.
+---
 
-## Osallistuminen
+## Migrations and Table Creation
 
-1. Tee oma haara (branch) ja tee muutokset.
-2. Testaa muutoksesi paikallisesti.
-3. Tee **pull request** GitHubiin.
+Migration logic is handled inside `main_app.py`, 
+which loads and executes SQL commands from `sql/create_tables.sql` and `sql/insert_data.sql`. 
+
+This ensures the database schema and initial data are always up to date.
+
+
+> ⚠️ This project is part of a **school assignment** intended for learning and educational purposes only. It is **not intended for real-world business use** and is not in active production.
